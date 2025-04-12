@@ -1,0 +1,89 @@
+{% set active_page = 'report' %}
+{% extends 'base.html' %}
+{% block content %}
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Add report</h3>
+                    <div class="row mb-3">
+                        <div class="col-lg-12">
+
+                            <div class="row mb-3 d-none">
+                                <div class="col">
+                                    <div class="card text-white bg-primary shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card text-white bg-success shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold">Report Form</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="POST" action="/report" enctype="multipart/form-data">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="title"><strong>Title</strong></label><input class="form-control" type="text" id="title" placeholder="Title" name="title" required></div>
+                                                    </div>
+                                                    <div class="col">
+ <div class="mb-3">
+    <label for="category" class="form-label"><strong>Place</strong></label>
+
+    <select class="form-select" name="place" id="category" required>
+        <option value="metula">metula</option>
+        <option value="valid">south</option>
+        <option value="valid">center</option>
+        <option value="valid">west</option>
+    </select>
+  </div>
+                                                    </div>
+                                                </div>
+                                <div class="row">
+                                <div class="col">
+                                        <div class="mb-3"><label class="form-label" for="signature"><strong>Description</strong><br></label><textarea class="form-control" style="resize: none;" id="signature" rows="4" name="description" required></textarea></div>
+                                    </div>
+
+                                <div class="col">
+                                        <div class="mb-3"><label for="file"><strong>Attach photo</strong></label><input type="file" name="photo" id="file" class="form-control mt-4" required></div>
+                                        </div>
+<div class="row">
+                                <div class="col">
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Report</button></div>
+                                </div>
+    </div>
+                                    </div>
+                                            </form>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+
+
+                </div>
+                </div>
+  {% endblock %}
