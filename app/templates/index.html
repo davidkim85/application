@@ -1,0 +1,117 @@
+{% set active_page = 'home' %}
+{% extends 'base.html' %}
+{% block content %}
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="/generate-pdf"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Daily Report</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Members</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{count_users}}</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-users fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-success py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Images Collected</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{count_images}}</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas bi-file-earmark-post fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-info py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>All Reports</span></div>
+                                            <div class="row g-0 align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="text-dark fw-bold h5 mb-0 me-3"><span>{{count_reports}}</span></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-start-warning py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-danger fw-bold text-xs mb-1"><span>All Suspects</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{count_suspects}}</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas bi-file-earmark-person fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7 col-xl-8">
+                            <div class="card shadow mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary fw-bold m-0">Overall Reports Categorized</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area" style=" height: 300px; width: 100%;">
+                                        {% from 'bar_macros.html' import distributed_column_chart %}
+{{ distributed_column_chart(labels3, counts) }}
+
+            </div>
+                                </div>
+                            </div>
+                        </div>
+                   <div class="col-lg-5 col-xl-4">
+    <div class="card shadow mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="text-primary fw-bold m-0">Overall Reports</h6>
+
+        </div>
+        <div class="card-body">
+            <!-- Canvas for Pie Chart with responsive design -->
+            <div class="chart-area" style="position: relative; height: 300px; width: 100%;">
+                {% from 'pie_macros.html' import pie_chart %}
+    {{ pie_chart(labels, values) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary fw-bold m-0">Report for last 7 days </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area" style="position: relative; height: 300px; width: 100%;">
+                {% from 'line_macros.html' import spline_area_chart %}
+                {{ spline_area_chart(labels1, values1, titles1) }}
+            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+{% endblock %}

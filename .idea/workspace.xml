@@ -1,8 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/schemas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/uploads/markers/leb_solder.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/uploads/markers/un_solder.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/jwtConfig.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/images/layers-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/images/layers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/images/marker-icon-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/images/marker-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/images/marker-shadow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.esm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.esm.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/application.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/configurations/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/configurations/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/env.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/script.py.mako" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/versions/a2bc18cf6135_ad_base.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/schemas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/css/Nunito.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/css/Nunito.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/favicon/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar5.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/dogs/image2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/dogs/image3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/img/dogs/photo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/js/bs-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/js/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/js/theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pagination.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/team.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/3bdf2491fce64b8aace5b757a1c8bfd9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/7e5dd211912448a5871b89d50c1c66cb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/d0380efda83c4ee5a83a8315f7750dfe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/e8b4d0220d7e4562af74de944328077a.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/user.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/hashing.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/hashing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/jwtConfig.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,15 +81,37 @@
       <list>
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
+        <option value="Dockerfile" />
+        <option value="Python Script" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;davidkim85&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/davidkim85/application.git&quot;,
+    &quot;accountId&quot;: &quot;6dda2da8-fed1-4a36-b64d-328ee13f1b00&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Programs/Python/Python312/Lib/site-packages/starlette/templating.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2vOTHYl2C2g06vr8uyugaynPLRE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -31,25 +120,93 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "FastAPI.application.executor": "Run",
+    "FastAPI.application/app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/jgera/Desktop/application/static/auth/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsDialog.application.dockerMachine",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jgera\Desktop\application\static\auth\img" />
+      <recent name="C:\Users\jgera\Desktop\application\app\utils" />
+      <recent name="C:\Users\jgera\Desktop\application\app\tasks" />
+      <recent name="C:\Users\jgera\Desktop\application\app\schemas" />
+      <recent name="C:\Users\jgera\Desktop\application\app\models" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jgera\Desktop\application\app" />
+      <recent name="C:\Users\jgera\Desktop\application\app\broker" />
+      <recent name="C:\Users\jgera\Desktop\application" />
+      <recent name="C:\Users\jgera\Desktop\application\static\auth\img" />
+      <recent name="C:\Users\jgera\Desktop\application\app\static\leaflet" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="application" type="Python.FastAPI">
-      <option name="file" value="$PROJECT_DIR$/main.py" />
+      <option name="file" value="$PROJECT_DIR$/app/main.py" />
       <module name="application" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python312/python.exe" />
+      <option name="SDK_NAME" value="Python 3.12" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="application" type="Python.FastAPI">
+      <option name="file" value="$PROJECT_DIR$/app/main.py" />
+      <module name="application" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python312/python.exe" />
+      <option name="SDK_NAME" value="Python 3.12" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
@@ -70,8 +227,98 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744015033861</updated>
-      <workItem from="1744015074446" duration="6000" />
+      <workItem from="1744015074446" duration="23930000" />
+      <workItem from="1744039740826" duration="1430000" />
+      <workItem from="1744041258827" duration="3898000" />
+      <workItem from="1744096529560" duration="19004000" />
+      <workItem from="1744176635413" duration="302000" />
+      <workItem from="1744177163600" duration="64232000" />
+      <workItem from="1744450306434" duration="3000" />
+      <workItem from="1744453585710" duration="7791000" />
+      <workItem from="1744461929459" duration="7696000" />
+      <workItem from="1744610219340" duration="19000" />
+      <workItem from="1744633719261" duration="32000" />
+      <workItem from="1744633754013" duration="12624000" />
+      <workItem from="1744647684931" duration="11339000" />
+      <workItem from="1744715166022" duration="3394000" />
+      <workItem from="1744718902288" duration="6254000" />
+      <workItem from="1744725641505" duration="10539000" />
+      <workItem from="1744737371556" duration="6816000" />
+      <workItem from="1744744318473" duration="485000" />
+      <workItem from="1744745420062" duration="3693000" />
+      <workItem from="1744806438618" duration="1665000" />
+      <workItem from="1744808216378" duration="788000" />
+      <workItem from="1744809043381" duration="88000" />
+      <workItem from="1744809340912" duration="1884000" />
+      <workItem from="1744811283359" duration="2044000" />
+      <workItem from="1744813451665" duration="7301000" />
+      <workItem from="1744822028343" duration="246000" />
+      <workItem from="1744822389071" duration="1117000" />
+      <workItem from="1744823547849" duration="142000" />
+      <workItem from="1744823785521" duration="891000" />
+      <workItem from="1744824855610" duration="4731000" />
+      <workItem from="1744831465956" duration="2382000" />
+      <workItem from="1744881386781" duration="10324000" />
+      <workItem from="1744894166242" duration="1706000" />
+      <workItem from="1744896321157" duration="3374000" />
+      <workItem from="1744900791354" duration="2653000" />
+      <workItem from="1744903863616" duration="9741000" />
+      <workItem from="1744914120791" duration="3299000" />
+      <workItem from="1744917749623" duration="5965000" />
+      <workItem from="1744924044512" duration="1336000" />
+      <workItem from="1744925416819" duration="116000" />
+      <workItem from="1744925617130" duration="3111000" />
+      <workItem from="1744928844061" duration="2439000" />
+      <workItem from="1744931384433" duration="6370000" />
+      <workItem from="1744939828591" duration="2416000" />
+      <workItem from="1744942358388" duration="1850000" />
+      <workItem from="1744984219253" duration="6307000" />
+      <workItem from="1744991759448" duration="2440000" />
+      <workItem from="1744996831124" duration="1662000" />
+      <workItem from="1745000451254" duration="4718000" />
+      <workItem from="1745005710300" duration="381000" />
+      <workItem from="1745006110995" duration="628000" />
+      <workItem from="1745006842584" duration="4724000" />
+      <workItem from="1745065532345" duration="1179000" />
+      <workItem from="1745066812547" duration="456000" />
+      <workItem from="1745067352867" duration="496000" />
+      <workItem from="1745067883334" duration="19376000" />
+      <workItem from="1745087676257" duration="1746000" />
+      <workItem from="1745090726404" duration="13865000" />
+      <workItem from="1745223541557" duration="4325000" />
+      <workItem from="1745227990373" duration="27172000" />
+      <workItem from="1745569133101" duration="64000" />
+      <workItem from="1745576643841" duration="885000" />
+      <workItem from="1745577787870" duration="6902000" />
+      <workItem from="1745584999587" duration="5163000" />
+      <workItem from="1745590318790" duration="3550000" />
+      <workItem from="1745594310236" duration="2246000" />
+      <workItem from="1745596669774" duration="3680000" />
+      <workItem from="1745602279772" duration="87000" />
+      <workItem from="1745602391285" duration="767000" />
+      <workItem from="1745603324917" duration="2500000" />
+      <workItem from="1745605948956" duration="4969000" />
+      <workItem from="1745611086846" duration="6771000" />
+      <workItem from="1745650015051" duration="8235000" />
+      <workItem from="1745666385734" duration="179000" />
+      <workItem from="1745666694061" duration="882000" />
+      <workItem from="1745667620322" duration="14328000" />
+      <workItem from="1745841510159" duration="162000" />
+      <workItem from="1745843618291" duration="17421000" />
+      <workItem from="1746006336969" duration="37079000" />
+      <workItem from="1746369231961" duration="21042000" />
+      <workItem from="1746634827357" duration="383000" />
+      <workItem from="1746635335756" duration="78645000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/application$application.coverage" NAME="application Coverage Results" MODIFIED="1745847511587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

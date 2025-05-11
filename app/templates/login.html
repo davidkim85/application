@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden bg-dark border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url('../../static/auth/img/solder.jpg')"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                        <h4 class="text-white text-center mb-4 ">Welcome Back!</h4>
+                                    {%if msg%}
+                                    {% if msg=='success' %}
+                                    <div class="mb-3 text-center alert alert-success" role="alert">
+                                        Email Successfully Verified!
+                                    </div>
+                                    {% elif msg=='sent' %}
+                                     <div class="mb-3 text-center alert alert-success" role="alert">
+                                        Verification email has been sent!
+                                    </div>
+                                    {% elif msg=='recovery' %}
+                                     <div class="mb-3 text-center alert alert-success" role="alert">
+                                        Password recovery link has been sent to you!
+                                    </div>
+                                    {% elif msg=='changed' %}
+                                     <div class="mb-3 text-center alert alert-success" role="alert">
+                                        Password changed successfully!
+                                    </div>
+                                    {% elif msg=='registered' %}
+                                     <div class="mb-3 text-center alert alert-success" role="alert">
+                                        User registered successfully!
+                                    </div>
+                                    {% else %}
+                                    <div class="mb-3 text-center alert alert-danger" role="alert">
+                                        {{msg}}
+                                    </div>
+                                    {%endif%}
+                                    {%endif%}
+                                    <form class="user" method="POST" action="/auth/login" enctype="multipart/form-data">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" required></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password" required></div>
+                                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
+                                        <hr>
+                                        <a class="btn btn-danger d-block btn-google btn-user w-100 mb-2" role="button"  href="{{ google_login_url}}"><i class="fab fa-google"></i>&nbsp; Login with Google</a>
+                                        <hr>
+                                    </form>
+                                    <div class="text-center"><a class="small text-white" href="/auth/forgot_password">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small text-white" href="/auth/register">Create an Account!</a></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{%endblock%}

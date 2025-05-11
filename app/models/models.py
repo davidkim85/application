@@ -1,0 +1,118 @@
+import enum
+from datetime import datetime
+from typing import Optional, List
+from sqlalchemy import DateTime, Integer, String, func, Enum, Boolean, event, ForeignKey, Float
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from app.utils.hashing import get_password_hash
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class Role(str, enum.Enum):
+    USER = "user"
+    ADMIN = "admin"
+
+    def __str__(self) -> str:
+        return self.name.capitalize()
+
+
+class Address(Base):
+    __tablename__ = 'addresses'
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), unique=True)
+    user: Mapped["User"] = relationship(back_populates="address")
+    country: Mapped[str] = mapped_column(String, nullable=False)
+    street: Mapped[str] = mapped_column(String, nullable=False)
+    city: Mapped[str] = mapped_column(String, nullable=False)
+
+    def __repr__(self):
+        return f"<Address(id={self.id},country={self.country}, street={self.street}, city={self.city})>"
+
+
+
+
+
+class ImageReport(Base):
+    __tablename__ = "images"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    url: Mapped[str] = mapped_column(String,nullable=True)
+    report_id: Mapped[int] = mapped_column(ForeignKey("reports.id"))
+
+    # Many-to-one relationship
+    report: Mapped["Report"] = relationship(back_populates="images")
+
+class Report(Base):
+    __tablename__ = "reports"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, index=True)
+    title: Mapped[str] = mapped_column(String, nullable=False)
+    images: Mapped[List["ImageReport"]] = relationship(back_populates="report", cascade="all, delete-orphan")
+    latitude: Mapped[float] = mapped_column(Float, nullable=False)
+    longitude: Mapped[float] = mapped_column(Float, nullable=False)
+    icon: Mapped[str] = mapped_column(String, nullable=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    user: Mapped["User"] = relationship(back_populates="reports")
+    created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), nullable=False,index=True)
+    updated: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
+
+    def __repr__(self):
+        return f"<Report(id={self.id}, content={self.title})>"
+
+suspect = "app/uploads/markers/suspect.ico"
+civil="app/uploads/markers/civil.ico"
+un_solder="app/uploads/markers/un_solder.ico"
+leb_solder="app/uploads/markers/leb_solder.ico"
+
+
+@event.listens_for(Report, "before_insert")
+def change_before_insert(mapper, connection, target):
+    if target.title == "Civilian":
+        target.icon = civil
+    elif target.title == "Suspect":
+        target.icon = suspect
+    elif target.title == "Lebanon Forces":
+        target.icon=leb_solder
+    elif target.title == "UN Forces":
+        target.icon=un_solder
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, index=True)
+    email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True, index=True)
+    hashed_password: Mapped[str] = mapped_column(String, nullable=True)
+    firstname: Mapped[str] = mapped_column(String(255), nullable=False)
+    lastname: Mapped[str] = mapped_column(String(255), nullable=False)
+    role: Mapped[Enum[Role]] = mapped_column(Enum(Role), default=Role.USER, nullable=False)
+    isVerified: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    isActive: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    photo: Mapped[str] = mapped_column(String, nullable=True)
+    address: Mapped[Optional["Address"]] = relationship(back_populates="user", uselist=False)
+    reports: Mapped[List["Report"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), nullable=False)
+    updated: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
+    def __repr__(self):
+        return f"<User(id={self.id}, name={self.email})>"
+    # @staticmethod
+    # def calculate_age(birthday:datetime)->int:
+    #     today = datetime.today().date()
+    #     age = today.year - birthday.year
+    #     if today.month < birthday.month or (today.month == birthday.month and today.day < birthday.day):
+    #         age -= 1
+    #     return age
+
+
+filename_user = "app/uploads/user.jpg"
+
+
+@event.listens_for(User, "before_insert")
+def receive_before_insert_photo(mapper, connection, target):
+    if not target.photo:
+        target.photo = filename_user
+
+
+
+

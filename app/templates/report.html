@@ -1,0 +1,140 @@
+{% set active_page = 'report' %}
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        #map { height: 100vh; }
+        .popup-form {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+<div class="container-fluid">
+<div class="row mb-3">
+    <div class="col-lg-12">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Add Report</p>
+                    </div>
+                <div class="card-body">
+                    <form id="reportForm" method="POST" action="/report" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label"><strong>Title</strong></label>
+                                        <select class="form-select" name="title" id="title" required>
+                                            <option value="Civilian">Found Civilian</option>
+                                            <option value="Suspect">Found Suspect</option>
+                                            <option value="Lebanon Forces">Found Lebanon Forces</option>
+                                            <option value="UN Forces">Found UN Forces</option>
+                                        </select>
+                                </div>
+                        </div>
+                            <div class="col">
+
+                      <div class="mb-3">
+                          <label for="file"><strong>Attach photo</strong></label>
+                          <input type="file" name="files" id="file" class="form-control mt-2" multiple required></div>
+
+
+
+
+                            </div>
+                    </div>
+
+
+            <div class="row">
+                <p class="text-danger text-center m-0 fw-bold" id="mapHint">📍 Click on the map to select a location.</p>
+                <div class="col">
+                    <div class="mb-3">
+                        <input type="hidden" id="lat" name="latitude" required/>
+                        <input type="hidden" id="lng" name="longitude" required/>
+                            <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Report</button></div>
+                </div>
+            </div>
+            </form>
+        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    });
+
+
+    const openTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        attribution: '&copy; OpenTopoMap contributors'
+    });
+
+    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/' +
+                            'World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye',
+    maxZoom: 19
+});
+
+    const map = L.map('map', {
+        center: [33.2803, 35.5760],
+        zoom: 13,
+        layers: [osm]
+    });
+
+    const baseMaps = {
+        "OpenStreetMap": osm,
+        "OpenTopoMap": openTopo,
+        "Satellite":esriSat
+    };
+
+    L.control.layers(baseMaps).addTo(map);
+
+
+        const locations = {{ locations | tojson | safe }}
+
+       locations.forEach(loc => {
+        const customIcon = L.icon({
+            iconUrl: loc.icon,
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        const popupContent = `
+            <div style="text-align:center;">
+                <h4>${loc.title}</h4>
+            </div>
+        `;
+        L.marker([loc.latitude, loc.longitude], { icon: customIcon })
+            .addTo(map)
+            .bindPopup(popupContent);
+    });
+
+      let marker;
+        map.on('click', function (e) {
+            const lat = e.latlng.lat.toFixed(6);
+            const lng = e.latlng.lng.toFixed(6);
+            document.getElementById("lat").value = lat;
+            document.getElementById("lng").value = lng;
+            if (marker) map.removeLayer(marker);
+            marker = L.marker([lat, lng]).addTo(map);
+        });
+document.getElementById("reportForm").addEventListener("submit", function(e) {
+    const lat = document.getElementById("lat").value;
+    const lng = document.getElementById("lng").value;
+    if (!lat || !lng) {
+        e.preventDefault();
+        alert("Please select a location on the map.");
+    }
+});
+    </script>
+  {% endblock %}
