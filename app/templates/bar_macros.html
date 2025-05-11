@@ -1,0 +1,48 @@
+{% macro distributed_column_chart(labels3, counts) %}
+<div id="title-bar-chart" style="width: 100%; height: 300px;"></div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const chartLabels = {{ labels3 | tojson }};
+        const chartData = {{ counts | tojson }};
+
+        const options = {
+            chart: {
+                type: 'bar',
+                height: 300,
+                toolbar: { show: false }
+            },
+            series: [{
+                name: 'Count',
+                data: chartData
+            }],
+            xaxis: {
+                categories: chartLabels,
+                title: { text: 'Report Titles' },
+                labels: { rotate: -30 }
+            },
+            plotOptions: {
+                bar: {
+                    distributed: true,
+                    horizontal: false,
+                    columnWidth: '55%'
+                }
+            },
+            colors: ['rgba(58,162,237,0.6)','#232222','#1dff16','#fd0808','#9966FF', '#FF9F40'],  // Custom bar colors
+            dataLabels: {
+                enabled: true
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + " reports";
+                    }
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#title-bar-chart"), options);
+        chart.render();
+    });
+</script>
+{% endmacro %}

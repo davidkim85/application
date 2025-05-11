@@ -1,0 +1,63 @@
+{% macro spline_area_chart(labels1, values1, titles1) %}
+<div id="spline-area-chart" style="width: 100%; height: 100%;"></div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const labels = {{ labels1 | tojson }}
+        const data = {{ values1 | tojson }}
+        const titles = {{ titles1 | tojson }}
+
+        const options = {
+            chart: {
+                type: 'area',
+                height: 300,
+                zoom: { enabled: false }
+            },
+            series: [{
+                name: "{{ title }}",
+                data: data
+            }],
+            xaxis: {
+                categories: labels,
+                labels: { rotate: -45 }
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            title: {
+                text: "{{ title }}",
+                align: 'center'
+            },
+            tooltip: {
+                custom: function({ series, seriesIndex, dataPointIndex, w }) {
+                    const date = labels[dataPointIndex];
+                    const count = series[seriesIndex][dataPointIndex];
+                    const dayTitles = titles[dataPointIndex];
+
+                    const titleHTML = Object.entries(dayTitles).map(([title, count]) => {
+                        return `<li><strong>${title}</strong>: ${count} reports</li>`;
+                    }).join('');
+
+                    return `<div style="padding: 10px; font-size: 13px;">
+                                <strong>${date}</strong><br>
+                                <strong>Quantity:</strong> ${count}<br>
+                                <strong>Titles:</strong><ul style="margin: 5px 0; padding-left: 1.2em;">${titleHTML}</ul>
+                            </div>`;
+                }
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.5,
+                    opacityTo: 0.1,
+                    stops: [0, 90, 100]
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#spline-area-chart"), options);
+        chart.render();
+    });
+</script>
+{% endmacro %}

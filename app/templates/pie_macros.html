@@ -1,0 +1,45 @@
+{% macro pie_chart(labels, values, chart_id='chart') %}
+    <div id="{{ chart_id }}" style="height: 400px; width: 100%;"></div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const chartLabels = {{ labels | tojson }}
+            const chartValues = {{ values | tojson }}
+
+            const options = {
+                chart: {
+                    type: 'pie',
+                    height: '100%',
+                    width: '100%'
+                },
+                series: chartValues,
+                labels: chartLabels,
+                colors: ['rgba(58,162,237,0.6)','#232222','#1dff16','#fd0808','#9966FF', '#FF9F40'],  // <- Custom colors
+                legend: {
+                    position: 'top'
+                },
+                responsive: [{
+                    breakpoint: 1200,
+                    options: {
+                        chart: {
+                            width: '80%'
+                        }
+                    }
+                }, {
+                    breakpoint: 768,
+                    options: {
+                        chart: {
+                            width: '100%'
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            const chart = new ApexCharts(document.querySelector("#{{ chart_id }}"), options);
+            chart.render();
+        });
+    </script>
+{% endmacro %}

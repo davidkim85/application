@@ -1,0 +1,116 @@
+{% set active_page = 'map' %}
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    #filter-container {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        background: white;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        z-index: 1000;
+        width: 260px;
+    }
+    #filter-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    #filter-container button {
+        margin: 2px 0;
+        padding: 6px 10px;
+        width: 100%;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Map Statistics</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div id="map" style="height: 500px; width: 100%;">
+                                        <div id="filter-container">
+                                            <form method="get" action="/map">
+                                                <label for="start_date"><strong>Start Date</strong></label>
+                                                <input type="date" id="start_date" name="start_date"
+                                                       value="{{ start_date.strftime('%Y-%m-%d') if start_date else '' }}">
+                                                <label for="end_date"><strong>End Date</strong></label>
+                                                <input type="date" id="end_date" name="end_date"
+                                                       value="{{ end_date.strftime('%Y-%m-%d') if end_date else '' }}">
+                                                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
+                                            </form>
+                                            <hr>
+                                            <button onclick="filterMarkers('all')">All</button>
+                                            {% for t in types %}
+                                                <button onclick="filterMarkers('{{ t }}')">{{ t.capitalize() }}</button>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+
+<script>
+    const locations = {{ locations | tojson | safe }}
+    let markers = [];
+
+    const map = L.map('map', {
+        fullscreenControl: true,
+        fullscreenControlOptions: { position: 'bottomright' }
+    }).setView([33.2803, 35.5760], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    function renderMarkers(type = "all") {
+        markers.forEach(m => map.removeLayer(m));
+        markers = [];
+
+        locations.forEach(loc => {
+            if (type === "all" || loc.type === type) {
+                const icon = L.icon({
+                    iconUrl: loc.icon_url,
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+
+                const popup = `
+                    <div style="text-align:center;">
+                        <h4>${loc.name}</h4>
+                        <img src="${loc.photo}" alt="${loc.name}" style="width:150px;border-radius:8px;">
+                    </div>
+                `;
+
+                const marker = L.marker([loc.latitude, loc.longitude], { icon }).bindPopup(popup).addTo(map);
+                markers.push(marker);
+            }
+        });
+    }
+
+    function filterMarkers(type) {
+        renderMarkers(type);
+    }
+
+    // Initial render
+    renderMarkers("all");
+</script>
+{% endblock %}
