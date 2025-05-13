@@ -7,6 +7,11 @@
     <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/navigation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/versions/52392328cb0d_initial_migration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +68,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/jgera/Desktop/application",
+    "last_opened_file_path": "C:/Users/jgera/Desktop/application/app/templates/static",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,18 +85,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jgera\Desktop\application\app\templates\static" />
       <recent name="C:\Users\jgera\Desktop\application" />
       <recent name="C:\Users\jgera\Desktop\application\static\auth\img" />
       <recent name="C:\Users\jgera\Desktop\application\app\utils" />
       <recent name="C:\Users\jgera\Desktop\application\app\tasks" />
-      <recent name="C:\Users\jgera\Desktop\application\app\schemas" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jgera\Desktop\application\app\templates" />
       <recent name="C:\Users\jgera\Desktop\application\app" />
       <recent name="C:\Users\jgera\Desktop\application\app\broker" />
       <recent name="C:\Users\jgera\Desktop\application" />
       <recent name="C:\Users\jgera\Desktop\application\static\auth\img" />
-      <recent name="C:\Users\jgera\Desktop\application\app\static\leaflet" />
     </key>
   </component>
   <component name="RunManager">
@@ -247,7 +252,10 @@
       <workItem from="1746634827357" duration="383000" />
       <workItem from="1746635335756" duration="78645000" />
       <workItem from="1746948924446" duration="15921000" />
-      <workItem from="1747122134581" duration="16012000" />
+      <workItem from="1747122134581" duration="20793000" />
+      <workItem from="1747168514280" duration="44000" />
+      <workItem from="1747168682438" duration="499000" />
+      <workItem from="1747169219921" duration="4811000" />
     </task>
     <task id="LOCAL‎-00001" summary="update1">
       <option name="closed" value="true" />
@@ -361,7 +369,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1747138293414</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL‎-00015" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747163534403</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL‎-00015" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747163534403</updated>
+    </task>
+    <task id="LOCAL‎-00016" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747163621346</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL‎-00016" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747163621346</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,6 +393,22 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="296f5c82-b759-4977-9956-80a37b42c744" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="296f5c82-b759-4977-9956-80a37b42c744">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update1" />
