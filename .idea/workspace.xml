@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssl/furman.crt" beforeDir="false" afterPath="$PROJECT_DIR$/ssl/furman.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssl/furman.key" beforeDir="false" afterPath="$PROJECT_DIR$/ssl/furman.key" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +249,7 @@
       <workItem from="1746634827357" duration="383000" />
       <workItem from="1746635335756" duration="78645000" />
       <workItem from="1746948924446" duration="15921000" />
-      <workItem from="1747122134581" duration="5831000" />
+      <workItem from="1747122134581" duration="8540000" />
     </task>
     <task id="LOCAL‎-00001" summary="update1">
       <option name="closed" value="true" />
@@ -322,7 +323,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1747127338685</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL‎-00010" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747128144943</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL‎-00010" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747128144943</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
