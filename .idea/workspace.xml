@@ -4,72 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/uploads/markers/leb_solder.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/uploads/markers/un_solder.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/jwtConfig.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/images/layers-2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/images/layers.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/images/marker-icon-2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/images/marker-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/images/marker-shadow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.esm.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet-src.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/leaflet/leaflet.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/application.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/configurations/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/configurations/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/env.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/script.py.mako" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/a2bc18cf6135_ad_base.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/schemas.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/css/Nunito.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/css/Nunito.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/favicon/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/avatars/avatar5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/dogs/image2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/dogs/image3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/dogs/photo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/bs-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/js/theme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pagination.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/scripts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/team.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/3bdf2491fce64b8aace5b757a1c8bfd9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/7e5dd211912448a5871b89d50c1c66cb.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/d0380efda83c4ee5a83a8315f7750dfe.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/e8b4d0220d7e4562af74de944328077a.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/user.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/hashing.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/hashing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/jwtConfig.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/0ec4d0c77a9943d6a6a1753b70d71568.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/1f0773e8188b469585a74b9091412983.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/3d46f326420f47cbbae537cc958cc2bd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/48538a90706c438e932b5980f29e53d0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/50082c64f190476c81828b4fb37901f4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/56f05ddddd084f8f902116b4bb434463.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/8acdacf8126d443890378db116b3286f.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/966c02b6461b44b2a034a1ac9cb5cf69.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/bcd607dcedcd4c03bb77f7b420439a4d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploads/ef52be4977a24e5786e8a96dc0caf369.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/versions/c33240558b6c_initial_migration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +74,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/jgera/Desktop/application/static/auth/img",
+    "last_opened_file_path": "C:/Users/jgera/Desktop/application",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -143,11 +91,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jgera\Desktop\application" />
       <recent name="C:\Users\jgera\Desktop\application\static\auth\img" />
       <recent name="C:\Users\jgera\Desktop\application\app\utils" />
       <recent name="C:\Users\jgera\Desktop\application\app\tasks" />
       <recent name="C:\Users\jgera\Desktop\application\app\schemas" />
-      <recent name="C:\Users\jgera\Desktop\application\app\models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jgera\Desktop\application\app" />
@@ -309,7 +257,25 @@
       <workItem from="1746369231961" duration="21042000" />
       <workItem from="1746634827357" duration="383000" />
       <workItem from="1746635335756" duration="78645000" />
+      <workItem from="1746948924446" duration="11604000" />
     </task>
+    <task id="LOCAL‎-00001" summary="update1">
+      <option name="closed" value="true" />
+      <created>1746948973742</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL‎-00001" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1746948973742</updated>
+    </task>
+    <task id="LOCAL‎-00002" summary="update1">
+      <option name="closed" value="true" />
+      <created>1746948993821</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL‎-00002" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1746948993821</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +283,10 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update1" />
+    <option name="LAST_COMMIT_MESSAGE" value="update1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/application$application.coverage" NAME="application Coverage Results" MODIFIED="1745847511587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
