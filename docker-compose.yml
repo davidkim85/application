@@ -58,7 +58,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./static:/static
       - ./app/uploads:/app/uploads
-      - ./ssl:/ssl:ro  # Cloudflare origin certificate
+      - ./ssl:/app/ssl:ro  # Cloudflare origin certificate
     depends_on:
       - api
 
