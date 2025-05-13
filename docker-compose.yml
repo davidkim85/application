@@ -12,8 +12,8 @@ services:
       - ./app/uploads:/app/uploads
       - ./migrations:/app/migrations
       - ./alembic.ini:/app/alembic.ini
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
       - redis
       - db
@@ -57,7 +57,8 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./static:/static
-      - ./ssl:/ssl:ro
+      - ./app/uploads:/app/uploads
+      - ./ssl:/ssl:ro  # Cloudflare origin certificate
     depends_on:
       - api
 
