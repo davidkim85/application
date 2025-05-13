@@ -10,8 +10,8 @@ services:
       - ./app:/app/app
       - ./static:/static
       - ./app/uploads:/app/uploads
-      - ./migrations:/app/migrations
-      - ./alembic.ini:/app/alembic.ini
+      - ./migrations:/migrations
+      - ./alembic.ini:/alembic.ini
     ports:
       - "8000:8000"
     depends_on:

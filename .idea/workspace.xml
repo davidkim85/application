@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/0ec4d0c77a9943d6a6a1753b70d71568.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/1f0773e8188b469585a74b9091412983.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/3d46f326420f47cbbae537cc958cc2bd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/48538a90706c438e932b5980f29e53d0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/50082c64f190476c81828b4fb37901f4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/56f05ddddd084f8f902116b4bb434463.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/8acdacf8126d443890378db116b3286f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/966c02b6461b44b2a034a1ac9cb5cf69.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/bcd607dcedcd4c03bb77f7b420439a4d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploads/ef52be4977a24e5786e8a96dc0caf369.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/c33240558b6c_initial_migration.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +246,7 @@
       <workItem from="1746369231961" duration="21042000" />
       <workItem from="1746634827357" duration="383000" />
       <workItem from="1746635335756" duration="78645000" />
-      <workItem from="1746948924446" duration="11604000" />
+      <workItem from="1746948924446" duration="12499000" />
     </task>
     <task id="LOCAL‎-00001" summary="update1">
       <option name="closed" value="true" />
@@ -275,7 +264,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1746948993821</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎-00003" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747117411260</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747117411260</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
