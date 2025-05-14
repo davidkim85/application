@@ -3,8 +3,7 @@ from datetime import datetime
 from typing import Optional, List
 from sqlalchemy import DateTime, Integer, String, func, Enum, Boolean, event, ForeignKey, Float
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from app.utils.hashing import get_password_hash
-
+from zoneinfo import ZoneInfo
 
 class Base(DeclarativeBase):
     pass
@@ -31,7 +30,8 @@ class Address(Base):
         return f"<Address(id={self.id},country={self.country}, street={self.street}, city={self.city})>"
 
 
-
+def israel_now() -> datetime:
+    return datetime.now(ZoneInfo("Asia/Jerusalem"))
 
 
 class ImageReport(Base):
@@ -54,8 +54,12 @@ class Report(Base):
     icon: Mapped[str] = mapped_column(String, nullable=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="reports")
-    created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), nullable=False,index=True)
-    updated: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
+    created: Mapped[datetime] = mapped_column(
+        DateTime, default=israel_now, nullable=False, index=True
+    )
+    updated: Mapped[datetime] = mapped_column(
+        DateTime, default=israel_now, onupdate=israel_now
+    )
 
     def __repr__(self):
         return f"<Report(id={self.id}, content={self.title})>"
