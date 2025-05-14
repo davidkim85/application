@@ -66,7 +66,7 @@ async def resize_unique_filename(file: UploadFile):
     # Read content to measure size
     content = await file.read()
     file_size = len(content)
-    max_file_size = 5 * 1024 * 1024  # 5MB
+    max_file_size = 10 * 1024 * 1024  # 5MB
     if file_size > max_file_size:
         raise HTTPException(status_code=400, detail="File size exceeds the 5MB limit")
     ext = os.path.splitext(file.filename)[-1].lower()
