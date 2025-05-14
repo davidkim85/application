@@ -1,10 +1,11 @@
-{% macro distributed_column_chart(labels3, counts) %}
+{% macro distributed_column_chart(labels, values, colors) %}
 <div id="title-bar-chart" style="width: 100%; height: 300px;"></div>
 
 <script>
     window.addEventListener('DOMContentLoaded', function () {
-        const chartLabels = {{ labels3 | tojson }};
-        const chartData = {{ counts | tojson }};
+        const chartLabels = {{ labels | tojson }}
+        const chartData = {{ values | tojson }}
+        const chartColors = {{ colors | tojson }}  // Dynamic colors for bars
 
         const options = {
             chart: {
@@ -28,7 +29,7 @@
                     columnWidth: '55%'
                 }
             },
-            colors: ['rgba(58,162,237,0.6)','#232222','#1dff16','#fd0808','#9966FF', '#FF9F40'],  // Custom bar colors
+            colors: chartColors,  // Use the dynamic colors passed to the chart
             dataLabels: {
                 enabled: true
             },

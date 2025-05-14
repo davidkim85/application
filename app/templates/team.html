@@ -1,62 +1,72 @@
 {% set active_page = 'team' %}
 {% extends 'base.html' %}
+
 {% block content %}
-                <div class="container-fluid">
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Team Info</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive table mt-2"  role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0 table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Photo</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Role</th>
-                                            <th>Email</th>
-                                            <th>Reports</th>
-                                            <th>Messages</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    {%for one_user in list_users%}
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{one_user.photo}}"></td>
-                                            <td>{{one_user.firstname}}</td>
-                                            <td>{{one_user.lastname}}</td>
-                                            <td>{{one_user.role}}</td>
-                                            <td>{{one_user.email}}</td>
-                                            <td>{{one_user.reports | length}}</td>
-                                            <td>{{one_user.messages | length}}</td>
-                                        </tr>
-                                    {%endfor%}
-                                    </tbody>
-<!--                                    <tfoot>-->
-<!--                                        <tr>-->
-<!--                                            <th>Photo</th>-->
-<!--                                            <th>First Name</th>-->
-<!--                                            <th>Last Name</th>-->
-<!--                                            <th>Role</th>-->
-<!--                                            <th>Email</th>-->
-<!--                                            <th>Reports</th>-->
-<!--                                            <th>Messages</th>-->
-<!--                                        </tr>-->
-<!--                                    </tfoot>-->
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                </div>
-                                <div class="col-md-6">
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 fw-bold">Team Info</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0 table-hover">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Role</th>
+                                <th>Email</th>
+                                <th>Reports</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for one_user in list_users %}
+                                <tr>
+                                    <td><img class="rounded-circle me-2" width="30" height="30" src="{{ one_user.photo }}"></td>
+                                    <td>{{ one_user.firstname }}</td>
+                                    <td>{{ one_user.lastname }}</td>
+                                    <td>{{ one_user.role }}</td>
+                                    <td>{{ one_user.email }}</td>
+                                    <td>{{ one_user.reports | length }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
 
-  {% endblock %}
+                <div class="row">
+                    <div class="col-md-6 align-self-center">
+                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                            Showing {{ (current_page - 1) * per_page + 1 }} to
+                            {{ current_page * per_page if current_page * per_page <= total_users else total_users }}
+                            (Total: {{ total_users }})
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <nav>
+                            <ul class="pagination justify-content-end">
+                                <!-- Previous Page -->
+                                <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+                                    <a class="page-link" href="?page={{ current_page - 1 }}&per_page={{ per_page }}&search={{ search }}&sort_by={{ sort_by }}&sort_order={{ sort_order }}">Previous</a>
+                                </li>
+
+                                <!-- Page Numbers (e.g., 1, 2, 3) -->
+                                {% for i in range(1, total_pages + 1) %}
+                                    <li class="page-item {% if i == current_page %}active{% endif %}">
+                                        <a class="page-link" href="?page={{ i }}&per_page={{ per_page }}&search={{ search }}&sort_by={{ sort_by }}&sort_order={{ sort_order }}">{{ i }}</a>
+                                    </li>
+                                {% endfor %}
+
+                                <!-- Next Page -->
+                                <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+                                    <a class="page-link" href="?page={{ current_page + 1 }}&per_page={{ per_page }}&search={{ search }}&sort_by={{ sort_by }}&sort_order={{ sort_order }}">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

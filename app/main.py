@@ -6,7 +6,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 import io, aiohttp, os, aiofiles
 from reportlab.pdfgen import canvas as canvas_module
-from datetime import timedelta,date
+from datetime import timedelta
 from collections import defaultdict
 from typing import Annotated, Optional, List
 from uuid import uuid4
@@ -128,29 +128,17 @@ async def get_reports(session: AsyncSession = Depends(get_async_session)):
     select_query = select(Report).options(selectinload(Report.user))
     result = await session.execute(select_query)
     return result.scalars().all()
-async def get_data_pie_chart(session: AsyncSession) -> tuple[list[str], list[int]]:
+async def get_data_pie_chart(session: AsyncSession) -> tuple[list[str], list[int], list[str]]:
     result = await session.execute(
-        select(Report.title, func.count(Report.id))
-        .group_by(Report.title)
+        select(Report.title, func.count(Report.id), Report.color)
+        .group_by(Report.title, Report.color)
         .order_by(func.count(Report.id).desc())
     )
     rows = result.all()
     labels = [row[0] for row in rows]
     values = [row[1] for row in rows]
-    return labels, values
-
-
-async def get_title_counts(session: AsyncSession):
-    result = await session.execute(
-        select(Report.title, func.count())
-        .group_by(Report.title)
-    )
-    rows = result.all()
-
-    labels = [row[0] for row in rows]
-    counts = [row[1] for row in rows]
-
-    return labels, counts
+    colors = [row[2] if row[2] else '#999999' for row in rows]  # Default to gray if no color
+    return labels, values, colors
 
 async def get_daily_report_titles(session: AsyncSession, days: int = 7):
     result = await session.execute(
@@ -180,9 +168,9 @@ async def index_page(
     count_suspects:int=Depends(get_count_of_suspects),
     session: AsyncSession = Depends(get_async_session)):
     if user:
-        labels, values = await get_data_pie_chart(session)
+        labels, values, colors = await get_data_pie_chart(session)  # Now including colors
         labels1, values1, titles1 = await get_daily_report_titles(session)
-        labels3, counts = await get_title_counts(session)
+
         return templates.TemplateResponse("index.html", {
         "request": request,
         "user": user,
@@ -192,11 +180,10 @@ async def index_page(
         "count_images": count_images,
         "labels": labels,
         "values": values,
+        "colors":colors,
         "labels1": labels1,
         "values1": values1,
         "titles1":titles1,
-        "labels3": labels3,
-        "counts": counts,
         "count_suspects":count_suspects
     })
     return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
@@ -212,26 +199,56 @@ async def profile_page(request: Request, user: User = Depends(get_current_user),
                                            "count_reports": data.count_reports})
     return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
 
-
-@app.get("/team",response_class=HTMLResponse,include_in_schema=False)
-async def table_page(request: Request, user: User = Depends(get_current_user),
-                     data: GetData = Depends(get_data),
-                     reports: List[Report] = Depends(get_reports), list_users: List[User] = Depends(get_users)):
+@app.get("/team", response_class=HTMLResponse, include_in_schema=False)
+async def team_page(
+    request: Request,
+    user: User = Depends(get_current_user),
+    pagination_dep=Depends(get_pagination),
+    datas: GetData = Depends(get_data),
+    page: int = Query(1, ge=1),
+    per_page: int = Query(10, le=100),
+    db: AsyncSession = Depends(get_async_session)):
     if user:
-        return templates.TemplateResponse("team.html",
-                                          {"request": request, "user": user,"count_reports": data.count_reports,"reports": reports,
-                                           "list_users": list_users})
+        # Use pagination dependency for the User model
+        pagination = pagination_dep(User)  # User is the model for pagination
+        data = await pagination.paginate()  # Paginate users
+        # Get the reports
+        reports = await get_reports(db)
+        # Return the team page with paginated data
+        return templates.TemplateResponse("team.html", {
+            "request": request,
+            "user": user,
+            "count_reports": datas.count_reports,
+            "reports": reports,
+            "list_users": data["items"],  # Paginated list of users
+            "current_page": data["page"],  # Current page number
+            "total_pages": data["pages"],  # Total number of pages
+            "total_users": data["total"],  # Total number of users
+            "per_page": per_page,  # Pagination limit per page
+            **data
+        })
+
     return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
 
 
-@app.get("/report",response_class=HTMLResponse,include_in_schema=False)
-async def report_page(request: Request, user: User = Depends(get_current_user),
-                     data: GetData = Depends(get_data),
-                     session: AsyncSession = Depends(get_async_session)):
+@app.get("/report", response_class=HTMLResponse, include_in_schema=False)
+async def report_page(
+        request: Request,
+        user: User = Depends(get_current_user),
+        data: GetData = Depends(get_data),
+        session: AsyncSession = Depends(get_async_session)
+):
     if user:
-        select_query = select(Report).options(selectinload(Report.images))
+        # Get current UTC time and calculate 24 hours ago
+        now = datetime.utcnow()
+        twenty_four_hours_ago = now - timedelta(days=1)
+
+        # Query to get reports, filtering by created_at timestamp
+        select_query = select(Report).filter(Report.created >= twenty_four_hours_ago).options(
+            selectinload(Report.images))
         result = await session.execute(select_query)
         reports = result.scalars().all()
+
         locations = []
         for r in reports:
             locations.append({
@@ -241,9 +258,17 @@ async def report_page(request: Request, user: User = Depends(get_current_user),
                 "icon": r.icon,
                 "images": [{"url": img.url} for img in r.images],  # only URL, not UploadFile
             })
-        return templates.TemplateResponse("report.html",
-                                          {"request": request, "user": user,"reports": data.reports,
-                                           "count_reports": data.count_reports,"locations": locations})
+
+        return templates.TemplateResponse(
+            "report.html",
+            {
+                "request": request,
+                "user": user,
+                "reports": data.reports,
+                "count_reports": data.count_reports,
+                "locations": locations
+            }
+        )
     return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
 
 
@@ -335,13 +360,16 @@ async def reports_page(
             "search": search,
             "sort_by": sort_by,
             "sort_order": sort_order,
+            "current_page": page,
+            "total_pages": data["pages"],
+            "total_reports": data["total"],
             **data
         })
     return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
-
-
 from fastapi import Query
 from datetime import datetime
+
+from datetime import datetime, date
 
 @app.get("/map", response_class=HTMLResponse, include_in_schema=False)
 async def map_page(
@@ -355,8 +383,9 @@ async def map_page(
     if not user:
         return RedirectResponse(url="/login", status_code=status.HTTP_302_FOUND)
 
-    query = select(Report).options(selectinload(Report.images))
+    current_date = date.today()
 
+    query = select(Report).options(selectinload(Report.images))
     if start_date:
         query = query.where(Report.created >= start_date)
     if end_date:
@@ -383,9 +412,9 @@ async def map_page(
         "reports": data.reports,
         "count_reports": data.count_reports,
         "start_date": start_date,
-        "end_date": end_date
+        "end_date": end_date,
+        "current_date": current_date
     })
-
 
 
 # Footer function

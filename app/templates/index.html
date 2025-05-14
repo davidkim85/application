@@ -73,7 +73,7 @@
                                 <div class="card-body">
                                     <div class="chart-area" style=" height: 300px; width: 100%;">
                                         {% from 'bar_macros.html' import distributed_column_chart %}
-{{ distributed_column_chart(labels3, counts) }}
+{{ distributed_column_chart(labels, values, colors) }}
 
             </div>
                                 </div>
@@ -89,7 +89,7 @@
             <!-- Canvas for Pie Chart with responsive design -->
             <div class="chart-area" style="position: relative; height: 300px; width: 100%;">
                 {% from 'pie_macros.html' import pie_chart %}
-    {{ pie_chart(labels, values) }}
+{{ pie_chart(labels, values, colors) }}
 
             </div>
         </div>

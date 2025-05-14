@@ -6,8 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/dc018be10ad7_initial_migration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/bar_macros.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/bar_macros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/pie_macros.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/pie_macros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/reports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/versions/5b69eb6370be_initial_migration.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +263,7 @@
       <workItem from="1747168514280" duration="44000" />
       <workItem from="1747168682438" duration="499000" />
       <workItem from="1747169219921" duration="6177000" />
-      <workItem from="1747205112261" duration="12473000" />
+      <workItem from="1747205112261" duration="26685000" />
     </task>
     <task id="LOCAL‎-00001" summary="update1">
       <option name="closed" value="true" />
@@ -422,7 +433,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1747214895699</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL‎-00022" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747218121424</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL‎-00022" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747218121425</updated>
+    </task>
+    <task id="LOCAL‎-00023" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747218497691</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL‎-00023" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747218497691</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

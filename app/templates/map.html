@@ -4,70 +4,71 @@
 {% block content %}
 <style>
     #filter-container {
-        position: absolute;
-        top: 20px;
-        right: 40px;
         background: white;
         padding: 12px;
         border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        z-index: 1000;
-        width: 260px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 16px;
     }
+
     #filter-container form {
         display: flex;
         flex-direction: column;
         gap: 8px;
     }
+
     #filter-container button {
-        margin: 2px 0;
         padding: 6px 10px;
-        width: 100%;
     }
 </style>
 
 <div class="container-fluid">
     <div class="row mb-3">
         <div class="col-lg-12">
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="card shadow mb-3">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Map Statistics</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <div id="map" style="height: 500px; width: 100%;">
-                                        <div id="filter-container">
-                                            <form method="get" action="/map">
-                                                <label for="start_date"><strong>Start Date</strong></label>
-                                                <input type="date" id="start_date" name="start_date"
-                                                       value="{{ start_date.strftime('%Y-%m-%d') if start_date else '' }}">
-                                                <label for="end_date"><strong>End Date</strong></label>
-                                                <input type="date" id="end_date" name="end_date"
-                                                       value="{{ end_date.strftime('%Y-%m-%d') if end_date else '' }}">
-                                                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
-                                            </form>
-                                            <hr>
-                                            <button onclick="filterMarkers('all')">All</button>
-                                            {% for t in types %}
-                                                <button onclick="filterMarkers('{{ t }}')">{{ t.capitalize() }}</button>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="card shadow mb-3">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 fw-bold">Map Statistics</p>
+                </div>
+                <div class="card-body">
+                    <!-- Map -->
+                    <div id="map" style="height: 500px; width: 100%;"></div>
+
+                    <!-- Filter directly under map -->
+                    <div id="filter-container">
+                        <form method="get" action="/map">
+                            <label for="start_date"><strong>Start Date</strong></label>
+                            <input type="date" id="start_date" name="start_date"
+                                   value="{{ (start_date or current_date).strftime('%Y-%m-%d') }}">
+
+                            <label for="end_date"><strong>End Date</strong></label>
+                            <input type="date" id="end_date" name="end_date"
+                                   value="{{ (end_date or current_date).strftime('%Y-%m-%d') }}">
+
+                            <div class="d-flex gap-2 mt-2">
+                                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
+                                <a href="/map" class="btn btn-secondary btn-sm">Reset Filter</a>
                             </div>
+                        </form>
+                        <hr>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button onclick="filterMarkers('all')" class="btn btn-outline-primary btn-sm">All</button>
+                            {% for t in types %}
+                                <button onclick="filterMarkers('{{ t }}')" class="btn btn-outline-primary btn-sm">
+                                    {{ t.capitalize() }}
+                                </button>
+                            {% endfor %}
                         </div>
                     </div>
+                    <!-- End filter -->
                 </div>
             </div>
         </div>
-     </div>
+    </div>
 </div>
 
+<!-- Leaflet Script -->
 <script>
-    const locations = {{ locations | tojson | safe }}
+    const locations = {{ locations | tojson | safe }};
     let markers = [];
 
     const map = L.map('map', {

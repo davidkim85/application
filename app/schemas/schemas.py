@@ -40,6 +40,7 @@ class ReportBase(BaseModel):
     latitude: float
     longitude: float
     icon: str
+    color:str
     created: datetime
     updated: datetime
 

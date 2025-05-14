@@ -49,6 +49,7 @@ class Report(Base):
     latitude: Mapped[float] = mapped_column(Float, nullable=False)
     longitude: Mapped[float] = mapped_column(Float, nullable=False)
     icon: Mapped[str] = mapped_column(String, nullable=True)
+    color: Mapped[str] = mapped_column(String, nullable=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="reports")
     created: Mapped[datetime] = mapped_column(
@@ -77,6 +78,16 @@ def change_before_insert(mapper, connection, target):
         target.icon=leb_solder
     elif target.title == "UN Forces":
         target.icon=un_solder
+@event.listens_for(Report, "before_insert")
+def insert_before_color(mapper,connection,target):
+    if target.title == "Civilian":
+        target.color ="#1dff16"
+    elif target.title == "Suspect":
+        target.color ="#fd0808"
+    elif target.title == "Lebanon Forces":
+        target.color ="#232222"
+    elif target.title == "UN Forces":
+        target.color ="rgba(56,168,248,0.6)"
 
 
 class User(Base):

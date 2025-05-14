@@ -32,17 +32,12 @@
                                 </div>
                         </div>
                             <div class="col">
-
-                      <div class="mb-3">
-                          <label for="file"><strong>Attach photo</strong></label>
-                          <input type="file" name="files" id="file" class="form-control mt-2" multiple required></div>
-
-
-
-
+                                <div class="mb-3">
+                                    <label for="file"><strong>Attach photo</strong></label>
+                                    <input type="file" name="files" id="file" class="form-control mt-2" multiple required>
+                                </div>
                             </div>
                     </div>
-
 
             <div class="row">
                 <p class="text-danger text-center m-0 fw-bold" id="mapHint">📍 Click on the map to select a location.</p>
@@ -61,18 +56,17 @@
             </div>
             </form>
         </div>
-</div>
+    </div>
 </div>
 </div>
 </div>
 </div>
 </div>
 <script>
-const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; OpenStreetMap contributors'
     });
-
 
     const openTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
         maxZoom: 17,
@@ -80,10 +74,10 @@ const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     });
 
     const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/' +
-                            'World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye',
-    maxZoom: 19
-});
+                                'World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye',
+        maxZoom: 19
+    });
 
     const map = L.map('map', {
         center: [33.049616, 35.370456],
@@ -94,15 +88,14 @@ const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     const baseMaps = {
         "OpenStreetMap": osm,
         "OpenTopoMap": openTopo,
-        "Satellite":esriSat
+        "Satellite": esriSat
     };
 
     L.control.layers(baseMaps).addTo(map);
 
+    const locations = {{ locations | tojson | safe }}
 
-        const locations = {{ locations | tojson | safe }}
-
-       locations.forEach(loc => {
+    locations.forEach(loc => {
         const customIcon = L.icon({
             iconUrl: loc.icon,
             iconSize: [32, 32],
@@ -119,22 +112,23 @@ const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             .bindPopup(popupContent);
     });
 
-      let marker;
-        map.on('click', function (e) {
-            const lat = e.latlng.lat.toFixed(6);
-            const lng = e.latlng.lng.toFixed(6);
-            document.getElementById("lat").value = lat;
-            document.getElementById("lng").value = lng;
-            if (marker) map.removeLayer(marker);
-            marker = L.marker([lat, lng]).addTo(map);
-        });
-document.getElementById("reportForm").addEventListener("submit", function(e) {
-    const lat = document.getElementById("lat").value;
-    const lng = document.getElementById("lng").value;
-    if (!lat || !lng) {
-        e.preventDefault();
-        alert("Please select a location on the map.");
-    }
-});
-    </script>
-  {% endblock %}
+    let marker;
+    map.on('click', function (e) {
+        const lat = e.latlng.lat.toFixed(6);
+        const lng = e.latlng.lng.toFixed(6);
+        document.getElementById("lat").value = lat;
+        document.getElementById("lng").value = lng;
+        if (marker) map.removeLayer(marker);
+        marker = L.marker([lat, lng]).addTo(map);
+    });
+
+    document.getElementById("reportForm").addEventListener("submit", function(e) {
+        const lat = document.getElementById("lat").value;
+        const lng = document.getElementById("lng").value;
+        if (!lat || !lng) {
+            e.preventDefault();
+            alert("Please select a location on the map.");
+        }
+    });
+</script>
+{% endblock %}

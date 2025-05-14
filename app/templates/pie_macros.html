@@ -1,10 +1,11 @@
-{% macro pie_chart(labels, values, chart_id='chart') %}
-    <div id="{{ chart_id }}" style="height: 400px; width: 100%;"></div>
+{% macro pie_chart(labels, values, colors) %}
+    <div id="chart_id" style="height: 400px; width: 100%;"></div>
 
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             const chartLabels = {{ labels | tojson }}
             const chartValues = {{ values | tojson }}
+            const chartColors = {{ colors | tojson }}  // Get colors passed from the view
 
             const options = {
                 chart: {
@@ -14,7 +15,7 @@
                 },
                 series: chartValues,
                 labels: chartLabels,
-                colors: ['rgba(58,162,237,0.6)','#232222','#1dff16','#fd0808','#9966FF', '#FF9F40'],  // <- Custom colors
+                colors: chartColors,  // Use dynamic colors
                 legend: {
                     position: 'top'
                 },
@@ -38,7 +39,7 @@
                 }]
             };
 
-            const chart = new ApexCharts(document.querySelector("#{{ chart_id }}"), options);
+            const chart = new ApexCharts(document.querySelector("#chart_id"), options);
             chart.render();
         });
     </script>
