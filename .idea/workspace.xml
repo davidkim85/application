@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/navigation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/52392328cb0d_initial_migration.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/scripts.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/jgera/Desktop/application/app/templates/static",
+    "last_opened_file_path": "C:/Users/jgera/Desktop/application/app/templates/{{ url_for ('static',path='",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,11 +81,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jgera\Desktop\application\app\templates\{{ url_for ('static',path='" />
+      <recent name="C:\Users\jgera\Desktop\application\app\templates\{{ url_for('static', path='\assets" />
       <recent name="C:\Users\jgera\Desktop\application\app\templates\static" />
       <recent name="C:\Users\jgera\Desktop\application" />
       <recent name="C:\Users\jgera\Desktop\application\static\auth\img" />
-      <recent name="C:\Users\jgera\Desktop\application\app\utils" />
-      <recent name="C:\Users\jgera\Desktop\application\app\tasks" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jgera\Desktop\application\app\templates" />
@@ -255,7 +251,8 @@
       <workItem from="1747122134581" duration="20793000" />
       <workItem from="1747168514280" duration="44000" />
       <workItem from="1747168682438" duration="499000" />
-      <workItem from="1747169219921" duration="4811000" />
+      <workItem from="1747169219921" duration="6177000" />
+      <workItem from="1747205112261" duration="5918000" />
     </task>
     <task id="LOCAL‎-00001" summary="update1">
       <option name="closed" value="true" />
@@ -385,7 +382,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1747163621346</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL‎-00017" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747174290755</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL‎-00017" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747174290755</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
