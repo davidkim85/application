@@ -4,7 +4,6 @@ from typing import Optional, List
 from sqlalchemy import DateTime, Integer, String, func, Enum, Boolean, event, ForeignKey, Float
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from zoneinfo import ZoneInfo
-
 class Base(DeclarativeBase):
     pass
 
@@ -29,10 +28,9 @@ class Address(Base):
     def __repr__(self):
         return f"<Address(id={self.id},country={self.country}, street={self.street}, city={self.city})>"
 
-
+# Naive datetime function (removes timezone info)
 def israel_now() -> datetime:
-    return datetime.now(ZoneInfo("Asia/Jerusalem"))
-
+    return datetime.now(ZoneInfo("Asia/Jerusalem")).replace(tzinfo=None)
 
 class ImageReport(Base):
     __tablename__ = "images"
@@ -40,7 +38,6 @@ class ImageReport(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     url: Mapped[str] = mapped_column(String,nullable=True)
     report_id: Mapped[int] = mapped_column(ForeignKey("reports.id"))
-
     # Many-to-one relationship
     report: Mapped["Report"] = relationship(back_populates="images")
 
@@ -96,8 +93,12 @@ class User(Base):
     photo: Mapped[str] = mapped_column(String, nullable=True)
     address: Mapped[Optional["Address"]] = relationship(back_populates="user", uselist=False)
     reports: Mapped[List["Report"]] = relationship(back_populates="user", cascade="all, delete-orphan")
-    created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), nullable=False)
-    updated: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
+    created: Mapped[datetime] = mapped_column(
+        DateTime, default=israel_now, nullable=False, index=True
+    )
+    updated: Mapped[datetime] = mapped_column(
+        DateTime, default=israel_now, onupdate=israel_now
+    )
     def __repr__(self):
         return f"<User(id={self.id}, name={self.email})>"
     # @staticmethod
