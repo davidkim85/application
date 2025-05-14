@@ -21,7 +21,7 @@ from starlette.responses import FileResponse
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 from app.configurations.database import get_async_session
-from app.models.Pagination import get_pagination
+from app.models.Pagination import get_pagination_params, Pagination
 from app.models.models import User, Address,Report,ImageReport
 from app.schemas.schemas import  AddressForm, ReportForm,ReportRead, GetData, ImageReportCreate
 from redis import asyncio as aioredis
@@ -66,7 +66,7 @@ async def resize_unique_filename(file: UploadFile):
     # Read content to measure size
     content = await file.read()
     file_size = len(content)
-    max_file_size = 10 * 1024 * 1024  # 5MB
+    max_file_size = 10 * 1024 * 1024  # 10MB
     if file_size > max_file_size:
         raise HTTPException(status_code=400, detail="File size exceeds the 5MB limit")
     ext = os.path.splitext(file.filename)[-1].lower()
@@ -117,11 +117,6 @@ async def get_data(count_reports: int = Depends(get_count_of_reports),
                    ) -> GetData:
     return GetData(count_reports=count_reports, reports=reports)
 
-
-async def get_users(session: AsyncSession = Depends(get_async_session)):
-    select_query = select(User).options(selectinload(User.reports))
-    result = await session.execute(select_query)
-    return result.unique().scalars().all()
 
 
 async def get_reports(session: AsyncSession = Depends(get_async_session)):
@@ -203,33 +198,29 @@ async def profile_page(request: Request, user: User = Depends(get_current_user),
 async def team_page(
     request: Request,
     user: User = Depends(get_current_user),
-    pagination_dep=Depends(get_pagination),
     datas: GetData = Depends(get_data),
-    page: int = Query(1, ge=1),
-    per_page: int = Query(10, le=100),
-    db: AsyncSession = Depends(get_async_session)):
-    if user:
-        # Use pagination dependency for the User model
-        pagination = pagination_dep(User)  # User is the model for pagination
-        data = await pagination.paginate()  # Paginate users
-        # Get the reports
-        reports = await get_reports(db)
-        # Return the team page with paginated data
-        return templates.TemplateResponse("team.html", {
-            "request": request,
-            "user": user,
-            "count_reports": datas.count_reports,
-            "reports": reports,
-            "list_users": data["items"],  # Paginated list of users
-            "current_page": data["page"],  # Current page number
-            "total_pages": data["pages"],  # Total number of pages
-            "total_users": data["total"],  # Total number of users
-            "per_page": per_page,  # Pagination limit per page
-            **data
-        })
+    pagination_params: dict = Depends(get_pagination_params),
+):
+    if not user:
+        return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
 
-    return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
+    # Instantiate the Pagination class with necessary parameters
+    pagination = Pagination(model=User, **pagination_params)
+    paginated_data = await pagination.paginate()
 
+    # Return the response with paginated data and other context
+    return templates.TemplateResponse("team.html", {
+        "request": request,
+        "user": user,
+        "count_reports": datas.count_reports,
+        "reports": datas.reports,
+        "list_users": paginated_data["items"],  # Paginated list of users
+        "current_page": paginated_data["page"],  # Current page number
+        "total_pages": paginated_data["pages"],  # Total number of pages
+        "total_users": paginated_data["total"],  # Total number of users
+        "per_page": pagination_params["per_page"],  # Pagination limit per page
+        **paginated_data
+    })
 
 @app.get("/report", response_class=HTMLResponse, include_in_schema=False)
 async def report_page(
@@ -337,21 +328,58 @@ async def upload_image(
 
     return RedirectResponse(url="/", status_code=status.HTTP_302_FOUND)
 
-
-@app.get("/reports", response_class=HTMLResponse, include_in_schema=False, name="reports_page")
-async def reports_page(
+@app.get("/team", response_class=HTMLResponse, include_in_schema=False)
+async def team_page(
     request: Request,
     user: User = Depends(get_current_user),
     datas: GetData = Depends(get_data),
-    pagination_dep=Depends(get_pagination),
-    page: int = Query(1, ge=1),
-    search: str = Query("", alias="search"),
-    sort_by: str = Query("created"),
-    sort_order: str = Query("desc")
+    pagination_params: dict = Depends(get_pagination_params),
+):
+    if not user:
+        return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
+
+    # Add db to pagination_params to be used in Pagination
+    pagination_params["db"] = datas.db  # Assuming that `datas` provides access to `db` session
+
+    # Instantiate the Pagination class with necessary parameters
+    pagination = Pagination(model=User, **pagination_params)
+    paginated_data = await pagination.paginate()
+
+    # Return the response with paginated data and other context
+    return templates.TemplateResponse("team.html", {
+        "request": request,
+        "user": user,
+        "count_reports": datas.count_reports,
+        "reports": datas.reports,
+        "list_users": paginated_data["items"],  # Paginated list of users
+        "current_page": paginated_data["page"],  # Current page number
+        "total_pages": paginated_data["pages"],  # Total number of pages
+        "total_users": paginated_data["total"],  # Total number of users
+        "per_page": pagination_params["per_page"],  # Pagination limit per page
+        **paginated_data
+    })
+
+@app.get("/reports", response_class=HTMLResponse, include_in_schema=False, name="reports_page")
+async def reports_page(
+        request: Request,
+        user: User = Depends(get_current_user),
+        datas: GetData = Depends(get_data),
+        pagination_params: dict = Depends(get_pagination_params),  # Use refactored dependency
+        page: int = Query(1, ge=1),
+        search: str = Query("", alias="search"),
+        sort_by: str = Query("created"),
+        sort_order: str = Query("desc"),
+        db: AsyncSession = Depends(get_async_session)
 ):
     if user:
-        pagination = pagination_dep(Report)
+        # Add db to pagination_params, so it's passed in Pagination
+        pagination_params["db"] = db
+
+        # Paginate reports using the adjusted dependency (no need to pass search, sort_by, and sort_order here)
+        pagination = Pagination(model=Report, **pagination_params)
         data = await pagination.paginate()
+
+        # Return the reports page with paginated data
         return templates.TemplateResponse("reports.html", {
             "request": request,
             "user": user,
@@ -365,6 +393,7 @@ async def reports_page(
             "total_reports": data["total"],
             **data
         })
+
     return RedirectResponse(url="/auth/login", status_code=status.HTTP_302_FOUND)
 from fastapi import Query
 from datetime import datetime

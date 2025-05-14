@@ -23,7 +23,7 @@
                         <tbody>
                             {% for one_user in list_users %}
                                 <tr>
-                                    <td><img class="rounded-circle me-2" width="30" height="30" src="{{ one_user.photo }}"></td>
+                                    <td><img class="rounded-circle me-2" width="30" height="30" src="{{ one_user.photo }}" alt="user photo"></td>
                                     <td>{{ one_user.firstname }}</td>
                                     <td>{{ one_user.lastname }}</td>
                                     <td>{{ one_user.role }}</td>

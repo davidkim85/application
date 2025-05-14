@@ -30,7 +30,7 @@ class Pagination(Generic[ModelType]):
         self.sort_order = sort_order
 
     async def paginate(self) -> dict:
-        query = select(self.model)
+        base_query = select(self.model)
 
         # Apply search
         if self.search:
@@ -40,40 +40,40 @@ class Pagination(Generic[ModelType]):
                 if column is not None:
                     search_conditions.append(column.ilike(f"%{self.search}%"))
             if search_conditions:
-                query = query.where(or_(*search_conditions))
+                base_query = base_query.where(or_(*search_conditions))
 
         # Apply sorting
         sort_column = getattr(self.model, self.sort_by, None)
         if sort_column is not None:
-            if self.sort_order.lower() == "asc":
-                query = query.order_by(asc(sort_column))
-            else:
-                query = query.order_by(desc(sort_column))
-
-        # Eager load relationships (only if they exist)
-        if hasattr(self.model, "images"):
-            query = query.options(selectinload(self.model.images))
-        if hasattr(self.model, "user"):
-            query = query.options(selectinload(self.model.user))
+            order_clause = asc(sort_column) if self.sort_order.lower() == "asc" else desc(sort_column)
+            base_query = base_query.order_by(order_clause)
 
         # Count
-        total_query = await self.db.execute(select(func.count()).select_from(query.subquery()))
-        total = total_query.scalar()
+        count_query = select(func.count()).select_from(base_query.subquery())
+        total_result = await self.db.execute(count_query)
+        total = total_result.scalar()
+
+        # Apply eager load for relationships
+        data_query = base_query
+        if hasattr(self.model, "images") and hasattr(self.model, "user"):
+            data_query = data_query.options(selectinload(self.model.images),selectinload(self.model.user))
+        if hasattr(self.model,"address") and hasattr(self.model,"reports"):
+            data_query=data_query.options(selectinload(self.model.address),selectinload(self.model.reports))
 
         # Pagination
         offset = (self.page - 1) * self.per_page
-        data_query = await self.db.execute(query.offset(offset).limit(self.per_page))
-        results = data_query.scalars().all()
+        result = await self.db.execute(data_query.offset(offset).limit(self.per_page))
+        items = result.scalars().all()
 
         return {
-            "items": results,
+            "items": items,
             "total": total,
             "page": self.page,
-            "pages": (total // self.per_page) + (1 if total % self.per_page else 0)
+            "pages": (total // self.per_page) + (1 if total % self.per_page else 0),
         }
 
-# Dependency
-async def get_pagination(
+# Dependency to inject pagination parameters into the route
+async def get_pagination_params(
     page: int = Query(1, ge=1),
     per_page: int = Query(10, le=100),
     search: str = Query("", max_length=100),
@@ -82,13 +82,12 @@ async def get_pagination(
     search_fields: Optional[List[str]] = Query(["title"]),
     db: AsyncSession = Depends(get_async_session),
 ):
-    return lambda model: Pagination(
-        model=model,
-        db=db,
-        page=page,
-        per_page=per_page,
-        search=search,
-        search_fields=search_fields,
-        sort_by=sort_by,
-        sort_order=sort_order,
-    )
+    return {
+        "db": db,
+        "page": page,
+        "per_page": per_page,
+        "search": search,
+        "sort_by": sort_by,
+        "sort_order": sort_order,
+        "search_fields": search_fields,
+    }
