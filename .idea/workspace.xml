@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/746cdddc5fcf_initial_migration.py" beforeDir="false" />
-    </list>
+    <list default="true" id="e1cb2116-0c0d-4626-9f12-c38f77ecfa8f" name="Changes" comment="update1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -252,7 +248,7 @@
       <workItem from="1747168514280" duration="44000" />
       <workItem from="1747168682438" duration="499000" />
       <workItem from="1747169219921" duration="6177000" />
-      <workItem from="1747205112261" duration="8924000" />
+      <workItem from="1747205112261" duration="9237000" />
     </task>
     <task id="LOCAL‎-00001" summary="update1">
       <option name="closed" value="true" />
@@ -406,7 +402,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1747212838927</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL‎-00020" summary="update1">
+      <option name="closed" value="true" />
+      <created>1747214466267</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL‎-00020" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1747214466268</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
