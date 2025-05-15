@@ -35,6 +35,15 @@
 
                     <!-- Filter directly under map -->
                     <div id="filter-container">
+                         <div class="d-flex flex-wrap gap-2">
+                            <button onclick="filterMarkers('all')" class="btn btn-outline-primary btn-sm">All</button>
+                            {% for t in types %}
+                                <button onclick="filterMarkers('{{ t }}')" class="btn btn-outline-primary btn-sm">
+                                    {{ t.capitalize() }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                          <hr>
                         <form method="get" action="/map">
                             <label for="start_date"><strong>Start Date</strong></label>
                             <input type="date" id="start_date" name="start_date"
@@ -49,15 +58,6 @@
                                 <a href="/map" class="btn btn-secondary btn-sm">Reset Filter</a>
                             </div>
                         </form>
-                        <hr>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button onclick="filterMarkers('all')" class="btn btn-outline-primary btn-sm">All</button>
-                            {% for t in types %}
-                                <button onclick="filterMarkers('{{ t }}')" class="btn btn-outline-primary btn-sm">
-                                    {{ t.capitalize() }}
-                                </button>
-                            {% endfor %}
-                        </div>
                     </div>
                     <!-- End filter -->
                 </div>
@@ -68,7 +68,7 @@
 
 <!-- Leaflet Script -->
 <script>
-    const locations = {{ locations | tojson | safe }};
+    const locations = {{ locations | tojson | safe }}
     let markers = [];
 
     const map = L.map('map', {

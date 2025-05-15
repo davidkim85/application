@@ -13,8 +13,7 @@
                         <thead>
                             <tr>
                                 <th>Photo</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th class="text-nowrap">Full Name</th>
                                 <th>Role</th>
                                 <th>Email</th>
                                 <th>Reports</th>
@@ -24,8 +23,7 @@
                             {% for one_user in list_users %}
                                 <tr>
                                     <td><img class="rounded-circle me-2" width="30" height="30" src="{{ one_user.photo }}" alt="user photo"></td>
-                                    <td>{{ one_user.firstname }}</td>
-                                    <td>{{ one_user.lastname }}</td>
+                                    <td class="text-nowrap">{{ one_user.firstname }} {{ one_user.lastname }}</td>
                                     <td>{{ one_user.role }}</td>
                                     <td>{{ one_user.email }}</td>
                                     <td>{{ one_user.reports | length }}</td>

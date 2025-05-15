@@ -1,86 +1,103 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-    <script>
-        (function () {
+<script>
+(function () {
   "use strict"; // Start of use strict
 
-  var sidebar = document.querySelector('.sidebar');
-  var sidebarToggles = document.querySelectorAll('#sidebarToggle, #sidebarToggleTop');
+  const sidebar = document.querySelector('.sidebar');
+  const sidebarToggles = document.querySelectorAll('#sidebarToggle, #sidebarToggleTop');
 
   if (sidebar) {
+    // Collapse sidebar on small screens on page load
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    if (vw < 768) {
+      document.body.classList.add('sidebar-toggled');
+      sidebar.classList.add('toggled');
+    }
 
-    var collapseEl = sidebar.querySelector('.collapse');
-    var collapseElementList = [].slice.call(document.querySelectorAll('.sidebar .collapse'))
-    var sidebarCollapseList = collapseElementList.map(function (collapseEl) {
-      return new bootstrap.Collapse(collapseEl, {toggle: false});
-    });
+    const collapseElements = Array.from(document.querySelectorAll('.sidebar .collapse'));
+    const sidebarCollapseList = collapseElements.map(collapseEl => new bootstrap.Collapse(collapseEl, { toggle: false }));
 
-    for (var toggle of sidebarToggles) {
-
-      // Toggle the side navigation
-      toggle.addEventListener('click', function (e) {
+    // Toggle the side navigation by button
+    for (const toggle of sidebarToggles) {
+      toggle.addEventListener('click', function () {
         document.body.classList.toggle('sidebar-toggled');
         sidebar.classList.toggle('toggled');
 
         if (sidebar.classList.contains('toggled')) {
-          for (var bsCollapse of sidebarCollapseList) {
+          for (const bsCollapse of sidebarCollapseList) {
             bsCollapse.hide();
           }
         }
-        
       });
     }
 
     // Close any open menu accordions when window is resized below 768px
     window.addEventListener('resize', function () {
-      var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-
-      if (vw < 768) {
-        for (var bsCollapse of sidebarCollapseList) {
+      const vwResize = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      if (vwResize < 768) {
+        for (const bsCollapse of sidebarCollapseList) {
           bsCollapse.hide();
         }
       }
-      ;
+    });
+
+    // Expand sidebar on hover on large screens (≥768px)
+    sidebar.addEventListener('mouseenter', function () {
+      const vwHover = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      if (vwHover >= 768 && sidebar.classList.contains('toggled')) {
+        document.body.classList.remove('sidebar-toggled');
+        sidebar.classList.remove('toggled');
+      }
+    });
+
+    sidebar.addEventListener('mouseleave', function () {
+      const vwHover = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      if (vwHover >= 768 && !sidebar.classList.contains('toggled')) {
+        document.body.classList.add('sidebar-toggled');
+        sidebar.classList.add('toggled');
+        for (const bsCollapse of sidebarCollapseList) {
+          bsCollapse.hide();
+        }
+      }
     });
   }
 
-  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+  // Prevent content wrapper from scrolling when fixed sidebar hovered over
+  const fixedNavigation = document.querySelector('body.fixed-nav .sidebar');
+  if (fixedNavigation) {
+    fixedNavigation.addEventListener('wheel', function (e) {
+      const vwScroll = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
-  var fixedNaigation = document.querySelector('body.fixed-nav .sidebar');
-
-  if (fixedNaigation) {
-    fixedNaigation.on('mousewheel DOMMouseScroll wheel', function (e) {
-      var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-
-      if (vw > 768) {
-        var e0 = e.originalEvent,
-            delta = e0.wheelDelta || -e0.detail;
-        this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+      if (vwScroll > 768) {
+        const delta = e.deltaY || e.wheelDelta || -e.detail;
+        this.scrollTop += (delta > 0 ? 1 : -1) * 30;
         e.preventDefault();
       }
     });
   }
 
-  var scrollToTop = document.querySelector('.scroll-to-top');
-
+  // Scroll to top button appear
+  const scrollToTop = document.querySelector('.scroll-to-top');
   if (scrollToTop) {
-
-    // Scroll to top button appear
     window.addEventListener('scroll', function () {
-      var scrollDistance = window.pageYOffset;
-
-      //check if user is scrolling up
+      const scrollDistance = window.pageYOffset;
       if (scrollDistance > 100) {
         scrollToTop.style.display = 'block';
       } else {
         scrollToTop.style.display = 'none';
       }
     });
+
+    // Smooth scroll to top on click
+    scrollToTop.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
 })(); // End of use strict
+</script>
 
-
-    </script>
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <!-- Fullscreen Plugin JS -->

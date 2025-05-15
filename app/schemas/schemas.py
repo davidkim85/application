@@ -164,4 +164,3 @@ class GetData(BaseModel):
     reports:List[ReportRead]=Field(default_factory=list)
 
 
-

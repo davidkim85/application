@@ -16,8 +16,9 @@
     <div class="card shadow">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <p class="text-primary m-0 fw-bold">Reports</p>
-            <form method="get" class="d-flex">
-                <input type="text" name="search" class="form-control me-2" placeholder="Search..." value="{{ search }}">
+
+            <form method="get" class="d-flex justify-content-end ">
+                <input type="text" name="search" class="form-control me-2 w-50" placeholder="Search..." value="{{ search }}">
                 <input type="hidden" name="sort_by" value="{{ sort_by }}">
                 <input type="hidden" name="sort_order" value="{{ sort_order }}">
                 <button class="btn btn-primary" type="submit">Search</button>
@@ -37,8 +38,8 @@
                             <th>
                                 <a href="?search={{ search }}&sort_by=created&sort_order={{ 'asc' if sort_order == 'desc' else 'desc' }}">Created</a>
                             </th>
-                            <th>Full Name</th>
-                            <th>Member</th>
+                            <th class="text-nowrap">Full Name</th>
+                            <th>Photo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,9 +56,9 @@
                                 {% endif %}
                             </td>
                             <td>{{ item.title }}</td>
-                            <td><i class="bi bi-map me-1"></i>{{ item.latitude }}, {{ item.longitude }}</td>
-                            <td><i class="bi bi-clock me-1"></i>{{ item.created.strftime('%H:%M %d/%m') }}</td>
-                            <td><small>{{ item.user.firstname }} {{ item.user.lastname }}</small></td>
+                            <td class="text-nowrap"><i class="bi bi-map me-1"></i>{{ item.latitude }}, {{ item.longitude }}</td>
+                            <td class="text-nowrap"><i class="bi bi-clock me-1"></i>{{ item.created.strftime('%H:%M %d/%m') }}</td>
+                            <td class="text-nowrap"><small>{{ item.user.firstname }} {{ item.user.lastname }}</small></td>
                             <td>
                                 {% if item.user.photo %}
                                     <img class="rounded-circle me-2" width="30" height="30" src="{{ item.user.photo }}">
